@@ -1,0 +1,17 @@
+{% extends "temp.html" %}
+
+{% block title %}
+{{ article.name }}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<h1>{{ teacher.name }}</h1>
+
+    <div class="alert alert-info"></div>
+    <p>{{ teacher.name }}</p>
+    <p>{{ teacher.subj }}</p>
+    <p><b>{{ teacher.inter }}</b></p>
+
+</div>
+{% endblock %}

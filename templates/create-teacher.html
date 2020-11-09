@@ -1,0 +1,17 @@
+{% extends "temp.html" %}
+
+{% block title %}
+Добавить
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<h1>Добавить преподавателя</h1>
+    <form action = "/create-teacher" method ="post">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Введите имя"><br>
+        <textarea name="subj" id="subj" class="form-control" placeholder="Предметы"></textarea><br>
+        <textarea name="inter" id="inter" class="form-control" placeholder="Интервалы"></textarea><br>
+        <input type="submit" class="btn-success" value="Отправить"><br>
+    </form>
+</div>
+{% endblock %}
