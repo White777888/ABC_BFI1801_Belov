@@ -6,11 +6,72 @@
 
 {% block body %}
 <div class="container mt-5">
-<h1>Добавить преподавателя</h1>
+<h1>Добавить запись в расписание</h1>
+    <style>
+        select{
+            margin: 0px 0px 30px;
+        }
+    </style>
     <form action = "/create-teacher" method ="post">
-        <input type="text" name="name" id="name" class="form-control" placeholder="Введите имя"><br>
-        <textarea name="subj" id="subj" class="form-control" placeholder="Предметы"></textarea><br>
-        <textarea name="inter" id="inter" class="form-control" placeholder="Интервалы"></textarea><br>
+        <!--<input type="text" name="name" id="name" class="form-control" placeholder="Введите имя"><br>-->
+        <!--<textarea name="subj" id="subj" class="form-control" placeholder="Предметы"></textarea><br>-->
+
+
+        <!--<select name="name" id="name" class="form-control">
+            <option disabled selected>Выберите имя</option>
+            <option value="Городничев М.Г.">Городничев М.Г.</option>
+            <option value="Маклачкова В.В.">Маклачкова В.В.</option>
+            <option value="Фатхулин Т.Д.">Фатхулин Т.Д.</option>
+            <option value="Руднев А.Н.">Руднев А.Н.</option>
+            <option value="Смирнов А.Э.">Смирнов А.Э.</option>
+            <option value="Королькова Т.В.">Королькова Т.В.</option>
+            <option value="Трубникова Н.В.">Трубникова Н.В.</option>
+            <option value="Шереметьев А.В.">Шереметьев А.В.</option>
+        </select>-->
+
+        <select name="name" id="name" class="form-control">
+            <option disabled selected>Выберите преподавателя</option>
+            {% for el in teachers%}
+                <option value="{{ el.t_name }}">{{el.t_name}}</option>
+            {% endfor %}
+        </select>
+
+
+        <select name="subj" id="subj" class="form-control">
+            <option disabled selected>Выберите предмет</option>
+            {% for el in subjects%}
+                <option value="{{ el.s_name }}">{{el.s_name}}</option>
+            {% endfor %}
+        </select>
+
+        <select name="day" id="day" class="form-control">
+            <option disabled selected>Выберите день</option>
+            <option value="Понедельник">Понедельник</option>
+            <option value="Вторник">Вторник</option>
+            <option value="Среда">Среда</option>
+            <option value="Четверг">Четверг</option>
+            <option value="Пятница">Пятница</option>
+        </select>
+
+
+        <select name="time" id="time" class="form-control">
+            <option disabled selected>Выберите время</option>
+            <option value="9.30 - 11.05">9.30 - 11.05</option>
+            <option value="11.20 - 12.55">11.20 - 12.55</option>
+            <option value="13.10 - 14.45">13.10 - 14.45</option>
+            <option value="15.25 - 17.00">15.25 - 17.00</option>
+            <option value="17.15 - 18.50">17.15 - 18.50</option>
+        </select>
+
+
+        <select name="subjType" id="subjType" class="form-control">
+            <option disabled selected>Выберите тип недели</option>
+            <option value="Четная">Четная</option>
+            <option value="Нечетная">Нечетная</option>
+            <option value="Постоянная">Постоянная</option>
+        </select>
+
+
         <input type="submit" class="btn-success" value="Отправить"><br>
     </form>
 </div>

@@ -1,0 +1,92 @@
+{% extends "temp.html" %}
+
+{% block title %}
+Расписание
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+<h1>Расписание</h1>
+    <style>
+    td {
+    Width: 300px;
+    Height: 50px;
+    }
+    </style>
+    <table border="1">
+        <tr align=center>
+            <th>     </th> <th align=center>Понедельник</th> <th align=center>Вторник</th> <th align=center>Среда</th> <th align=center>Четверг</th> <th align=center>Пятница</th>
+        </tr>
+
+        {% set week = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"] %}
+        {% set times = ["9.30 - 11.05", "11.20 - 12.55", "13.10 - 14.45", "15.25 - 17.00", "17.15 - 18.50"]%}
+        {% set stopDays = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"] %}
+
+        {% set count = namespace(a=0) %}
+        {% set NumFullDay = namespace(nfd=0)%}
+
+        {% for time in times %}
+
+            {% set count.a = 0 %}
+            {% set stopDays = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"] %}
+            <tr>
+                <td rowspan="2" align=center> {{time}}</td>
+                {% for day in week %}
+
+                    {% set count.a = 0 %}
+                    {% for el in teachers %}
+
+                        {% if (el.day == day) and (el.time == time) and (el.weektype == "Постоянная")%}
+                            {% set count.a = 1 %}
+                            {% set NumFullDay.nfd = NumFullDay.nfd + 1 %}
+                            {{ stopDays.remove(day) if stopDays.remove(day) }}
+
+                            <td rowspan="2" align=center> {{el.subj}} - {{el.name}}</td>
+                        {% endif %}
+                    {% endfor %}
+
+                {% if count.a == 0 %}
+                    {% set count.a = 0 %}
+                        {% for el in teachers %}
+
+                            {% if (el.day == day) and (el.time == time) and (el.weektype == "Нечетная")%}
+                                {% set count.a = 1 %}
+
+                                <td align=center> {{el.subj}} - {{el.name}}</td>
+
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if count.a == 0 %}
+                            <td align=center> - </td>
+                        {% endif %}
+                {% endif %}
+            {% endfor %}
+            </tr>
+
+        <tr>
+
+            {% for day in stopDays %}
+
+                    {% set count.a = 0 %}
+                    {% for el in teachers %}
+
+                        {% if (el.day == day) and (el.time == time) and (el.weektype == "Четная")%}
+                            {% set count.a = 1 %}
+                            <td align=center> {{el.subj}} - {{el.name}}</td>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% if count.a == 0 %}
+                        <td align=center>-</td>
+                    {% endif %}
+            {% endfor %}
+        </tr>
+        {% set NumFullDay.nfd = 0 %}
+    {% endfor %}
+    </table>
+
+</div>
+{% endblock %}
