@@ -1,17 +1,22 @@
+<!--Насследование от шаблона-->
 {% extends "temp.html" %}
 
+<!--Заголовок-->
 {% block title %}
 Предметы
 {% endblock %}
 
+<!--Тело страницы-->
 {% block body %}
 
 <form action = "/Subject" method ="post">
+    <!--Элементы для добавления предмета-->
     <input type="text" name="subj" id="subj" class="form-control" placeholder="Добавить предмет"><br>
     <input type="submit" class="btn-success" value="Добавить"><br>
 
     <h1>Список предметов</h1>
 
+    <!--Вывод имеющегося списка предметов-->
     {% for el in subjects %}
         <h4>{{ el.s_name }}</h4>
     {% endfor %}

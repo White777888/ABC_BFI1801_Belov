@@ -1,9 +1,12 @@
+<!--Насследование от шаблона-->
 {% extends "temp.html" %}
 
+<!--Заголовок-->
 {% block title %}
 Добавить
 {% endblock %}
 
+<!--Тело страницы-->
 {% block body %}
 <div class="container mt-5">
 <h1>Добавить запись в расписание</h1>
@@ -12,10 +15,11 @@
             margin: 0px 0px 30px;
         }
     </style>
+
+    <!--Форма передачи преподавателя на сервер-->
     <form action = "/create-teacher" method ="post">
         <!--<input type="text" name="name" id="name" class="form-control" placeholder="Введите имя"><br>-->
         <!--<textarea name="subj" id="subj" class="form-control" placeholder="Предметы"></textarea><br>-->
-
 
         <!--<select name="name" id="name" class="form-control">
             <option disabled selected>Выберите имя</option>
@@ -29,6 +33,8 @@
             <option value="Шереметьев А.В.">Шереметьев А.В.</option>
         </select>-->
 
+
+        <!--Выпадающий список выбором имени-->
         <select name="name" id="name" class="form-control">
             <option disabled selected>Выберите преподавателя</option>
             {% for el in teachers%}
@@ -37,6 +43,7 @@
         </select>
 
 
+        <!--Список для выбора с предметами-->
         <select name="subj" id="subj" class="form-control">
             <option disabled selected>Выберите предмет</option>
             {% for el in subjects%}
@@ -44,6 +51,7 @@
             {% endfor %}
         </select>
 
+        <!--Выпадающий список дней недели-->
         <select name="day" id="day" class="form-control">
             <option disabled selected>Выберите день</option>
             <option value="Понедельник">Понедельник</option>
@@ -53,7 +61,7 @@
             <option value="Пятница">Пятница</option>
         </select>
 
-
+        <!--Выпадающий список для выбора времени-->
         <select name="time" id="time" class="form-control">
             <option disabled selected>Выберите время</option>
             <option value="9.30 - 11.05">9.30 - 11.05</option>
@@ -63,7 +71,7 @@
             <option value="17.15 - 18.50">17.15 - 18.50</option>
         </select>
 
-
+        <!--Выпадающий список для выбора типа пары-->
         <select name="subjType" id="subjType" class="form-control">
             <option disabled selected>Выберите тип недели</option>
             <option value="Четная">Четная</option>
@@ -71,7 +79,7 @@
             <option value="Постоянная">Постоянная</option>
         </select>
 
-
+        <!--Кнопка отправки-->
         <input type="submit" class="btn-success" value="Отправить"><br>
     </form>
 </div>

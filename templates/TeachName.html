@@ -1,17 +1,22 @@
+<!--Насследование от шаблона-->
 {% extends "temp.html" %}
 
+<!--Заголовок-->
 {% block title %}
 Преподавтали
 {% endblock %}
 
+<!--Тело страницы-->
 {% block body %}
 
+<!--Тело отправки данных на сервер-->
 <form action = "/TeachName" method ="post">
     <input type="text" name="t_name" id="t_name" class="form-control" placeholder="Добавить преподавателя"><br>
     <input type="submit" class="btn-success" value="Добавить"><br>
 
     <h1>Список преподавателей</h1>
 
+    <!--Вывод списка преподавателей из переданного списка-->
     {% for el in teachers %}
         <h4>{{ el.t_name }}</h4>
     {% endfor %}

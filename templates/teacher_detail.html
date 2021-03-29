@@ -1,13 +1,17 @@
+<!--Насследование от шаблона-->
 {% extends "temp.html" %}
 
+<!--Заголовок-->
 {% block title %}
 {{ teacher.name }}
 {% endblock %}
 
+<!--Тело страницы-->
 {% block body %}
 <div class="container mt-5">
 <h1>{{ teacher.name }}</h1>
 
+    <!---Вывод конкретного переданного преподавателя-->
     <div class="alert alert-info"></div>
     <p>{{ teacher.name }}</p>
     <p>{{ teacher.subj }}</p>

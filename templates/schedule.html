@@ -1,23 +1,31 @@
+<!--Насследование от шаблона-->
 {% extends "temp.html" %}
 
+<!--Заголовок-->
 {% block title %}
 Расписание
 {% endblock %}
 
+<!--Тело страницы-->
 {% block body %}
 <div class="container mt-5">
 <h1>Расписание</h1>
+    <!--Задание параметров стиля-->
     <style>
     td {
     Width: 300px;
     Height: 50px;
     }
     </style>
+
+    <!--Отрисовка таблицы-->
     <table border="1">
+        <!--Отрисовка дней недели-->
         <tr align=center>
             <th>     </th> <th align=center>Понедельник</th> <th align=center>Вторник</th> <th align=center>Среда</th> <th align=center>Четверг</th> <th align=center>Пятница</th>
         </tr>
 
+        <!--Создание списокв для вывода-->
         {% set week = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"] %}
         {% set times = ["9.30 - 11.05", "11.20 - 12.55", "13.10 - 14.45", "15.25 - 17.00", "17.15 - 18.50"]%}
         {% set stopDays = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"] %}
@@ -25,6 +33,7 @@
         {% set count = namespace(a=0) %}
         {% set NumFullDay = namespace(nfd=0)%}
 
+        <!--Цикл проходящий по временам проведения пар-->
         {% for time in times %}
 
             {% set count.a = 0 %}
@@ -33,6 +42,7 @@
                 <td rowspan="2" align=center> {{time}}</td>
                 {% for day in week %}
 
+                    <!--Прохождение по дням-->
                     {% set count.a = 0 %}
                     {% for el in teachers %}
 
@@ -47,7 +57,10 @@
 
                 {% if count.a == 0 %}
                     {% set count.a = 0 %}
+
+                        <!--Поиск преподавателей для вывода-->
                         {% for el in teachers %}
+
 
                             {% if (el.day == day) and (el.time == time) and (el.weektype == "Нечетная")%}
                                 {% set count.a = 1 %}

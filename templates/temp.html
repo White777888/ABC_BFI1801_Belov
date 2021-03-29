@@ -1,3 +1,4 @@
+<!--Файл шаблона, по которому строится общий вид страниц-->
 <!doctype html>
 <html lang="ru">
 <head>
@@ -5,16 +6,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Указание файла для стиля-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!--Указание ссылки на файл стиля на сайте bootstrap-->
     <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+    <!--Шаблон, вместо которого будет подставляться заголовок-->
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal">Мой сайт</h5>
       <nav class="my-2 my-md-0 mr-md-3">
-
+          <!--Создание шапкм с ссылками на страницы (href)-->
           <a class="p-2 text-dark" href="/">Главная страницы</a>
           <a class="p-2 text-dark" href="/about">О нас</a>
           <a class="p-2 text-dark" href="/teacher">Преподаватели</a>
@@ -23,10 +27,14 @@
           <a class="p-2 text-dark" href="/TeachName">Добавить преподавателей</a>
 
       </nav>
+        <!--Создание кнопки для перехода на страницу с добавлением преподавателя-->
         <a class="btn btn-warning" href="/create-teacher">Добавить запись в расписание</a>
     </div>
+
+    <!--Шаблон, вместо которого будет подставляться тело страницы-->
     {% block body %}{% endblock %}
 
+    <!--Отрисовка нижней части страницы-->
     <footer class="container pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
       <div class="col-12 col-md">
